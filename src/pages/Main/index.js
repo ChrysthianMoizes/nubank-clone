@@ -15,14 +15,32 @@ import {
   CardContent,
   CardFooter,
   Title,
+  TitleInvoice,
+  DescriptionInvoice,
+  ContainerLimit,
+  DescriptionLimit,
   Description,
+  CardHeaderRewards,
+  CardContentRewards,
+  ButtonRewards,
+  ButtonRewardsText,
+  TitleRewards,
+  DescriptionRewards,
   Annotation
 } from './styles';
 
-
 export default function Main() {
 
-  let offset = 0;
+  state = {
+    showAccount: false
+  };
+
+  function setAccount() {
+
+  }
+
+  let offsetY = 0;
+
   const translateY = new Animated.Value(0);
 
   const animatedEvent = Animated.event(
@@ -36,29 +54,30 @@ export default function Main() {
 
   function onHandlerStateChange(event) {
     if(event.nativeEvent.oldState === State.ACTIVE){
-      let opened = false;
+
+      let openedY = false;
 
       const { translationY } = event.nativeEvent;
-      offset += translationY;
+
+      offsetY += translationY;
 
       if( translationY >= 100 ) {
-        opened = true;
+        openedY = true;
       }else {
-        translateY.setValue(offset);
+        translateY.setValue(offsetY);
         translateY.setOffset(0);
-        offset = 0;
+        offsetY = 0;
       }
 
       Animated.timing(translateY, {
-        toValue: opened ? 400 : 0,
+        toValue: openedY ? 400 : 0,
         duration: 200,
         useNativeDriver: true,
       }).start(() => {
-        offset = opened ? 400 : 0;
-        translateY.setOffset(offset);
+        offsetY = openedY ? 400 : 0;
+        translateY.setOffset(offsetY);
         translateY.setValue(0);
       });
-
     }
   }
 
@@ -81,19 +100,24 @@ export default function Main() {
               })
             }],
           }}
-          pagingEnabled >
+            pagingEnabled
+          >
             <Card>
               <CardHeader>
-                <Icon name="attach-money" size={28} color="#666" />
-                <Icon name="visibility-off" size={28} color="#666" />
+                <Icon name="credit-card" size={28} color="#666" />
               </CardHeader>
               <CardContent>
-                <Title>Saldo disponível</Title>
-                <Description>R$ 82.611,65</Description>
+                <TitleInvoice>FATURA ATUAL</TitleInvoice>
+                <DescriptionInvoice>R$ 1.827,19</DescriptionInvoice>
+                <ContainerLimit>
+                  <Title>Limite disponível </Title>
+                  <DescriptionLimit>R$ 15.226,81</DescriptionLimit>
+                </ContainerLimit>
               </CardContent>
-              <CardFooter>
+              <CardFooter onPress={setAccount}>
+                <Icon name="restaurant" size={28} color="#666" />
                 <Annotation>
-                  Transferência de R$ 4.237,38 recebida de Davy Gonçalves Cardoso Lima hoje
+                  Compra mais recente em Restaurante Drink no valor de R$ 253,50 ontem
                 </Annotation>
               </CardFooter>
             </Card>
@@ -106,26 +130,26 @@ export default function Main() {
                 <Title>Saldo disponível</Title>
                 <Description>R$ 82.611,65</Description>
               </CardContent>
-              <CardFooter>
+              <CardFooter onPress={setAccount}>
+                <Icon name="attach-money" size={28} color="#666" />
                 <Annotation>
                   Transferência de R$ 4.237,38 recebida de Davy Gonçalves Cardoso Lima hoje
                 </Annotation>
               </CardFooter>
             </Card>
             <Card>
-              <CardHeader>
-                <Icon name="attach-money" size={28} color="#666" />
-                <Icon name="visibility-off" size={28} color="#666" />
-              </CardHeader>
-              <CardContent>
-                <Title>Card Teste</Title>
-                <Description>Fatura</Description>
-              </CardContent>
-              <CardFooter>
-                <Annotation>
-                  Transferência de R$ 4.237,38 recebida de Davy Gonçalves Cardoso Lima hoje
-                </Annotation>
-              </CardFooter>
+              <CardHeaderRewards>
+                <Icon name="card-giftcard" size={28} color="#000" />
+              </CardHeaderRewards>
+              <CardContentRewards>
+                <TitleRewards>Nubank Rewards</TitleRewards>
+                <DescriptionRewards>Acumule pontos que nunca expiram e troque por passagens aéreas ou serviços que você realmente usa.</DescriptionRewards>
+              </CardContentRewards>
+              <ButtonRewards onPress={setAccount}>
+                <ButtonRewardsText>
+                  ATIVE O SEU REWARDS
+                </ButtonRewardsText>
+              </ButtonRewards>
             </Card>
           </CardList>
         </PanGestureHandler>
