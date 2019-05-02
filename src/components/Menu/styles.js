@@ -1,8 +1,12 @@
 import styled from 'styled-components/native';
 import { StyleSheet, Animated } from 'react-native';
 
-export const Container = styled(Animated.ScrollView)`
+export const Container = styled(Animated.ScrollView).attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: { paddingTop: 10 }
+})`
   margin: 0 30px;
+  flex: 1;
 `;
 
 export const Code = styled.View`
@@ -12,6 +16,23 @@ export const Code = styled.View`
   align-self: center;
 `;
 
+export const ContainerAccount = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7px;
+`;
+
+export const TitleAccount = styled.Text`
+  font-size: 13px;
+  color: #FFF;
+`;
+
+export const DescriptionAccount = styled.Text`
+  color: #FFF;
+  font-size: 12px;
+  font-weight: bold;
+`;
 
 export const Nav = styled.View`
   margin-top: 20px;

@@ -3,7 +3,8 @@ import { Animated } from 'react-native';
 
 export const Container = styled(Animated.View)`
   height: 100px;
-  margin-top: 20px;
+  margin-top: 15px;
+  z-index: 6;
 `;
 
 export const TabsContainer = styled.ScrollView.attrs({

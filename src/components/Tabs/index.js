@@ -7,7 +7,7 @@ export default function Tabs({ translateY }) {
     <Container style={{
       opacity: translateY.interpolate({
         inputRange: [0, 350],
-        outputRange: [1, 0.1],
+        outputRange: [1, 0],
         extrapolate: 'clamp'
       })
     }}>
@@ -29,8 +29,24 @@ export default function Tabs({ translateY }) {
           <TabText>Transferir</TabText>
         </TabItem>
         <TabItem>
-          <Icon name="lock" size={24} color="#FFF" />
+          <Icon name="timeline" size={24} color="#FFF" />
+          <TabText>Ajustar Limite</TabText>
+        </TabItem>
+        <TabItem>
+          <Icon name="subject" size={24} color="#FFF" />
+          <TabText>Pagar</TabText>
+        </TabItem>
+        <TabItem>
+          <Icon name="lock-outline" size={24} color="#FFF" />
           <TabText>Bloquear Cartão</TabText>
+        </TabItem>
+        <TabItem>
+          <Icon name="credit-card" size={24} color="#FFF" />
+          <TabText>Cartão Virtual</TabText>
+        </TabItem>
+        <TabItem>
+          <Icon name="sort" size={24} color="#FFF" />
+          <TabText>Organizar Atalhos</TabText>
         </TabItem>
       </TabsContainer>
     </Container>

@@ -1,8 +1,7 @@
 import styled from 'styled-components/native';
-import { Animated } from 'react-native';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { Animated, Dimensions } from 'react-native';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
   background: #8B10AE;
   padding-bottom: 10px;
@@ -10,20 +9,35 @@ export const Container = styled.View`
 
 export const Content = styled.View`
   flex: 1;
-  max-height: 400px;
+  max-height: 450px;
   z-index: 5;
 `;
 
-export const Card = styled(Animated.View)`
+export const Card = styled.View`
   background: #FFF;
-  flex: 1;
   border-radius: 4px;
   margin: 0 20px;
-  height: 85%;
+  width: ${Dimensions.get('window').width - 40}px;
+`;
+
+export const CardList = styled(Animated.ScrollView).attrs({
+  horizontal: true,
+  contentContainerStyle: { backgroundColor: 'transparent' },
+  showsHorizontalScrollIndicator: false
+})`
+  flex: 1;
+  height: 90%;
   position: absolute;
-  top: 60;
+  top: 20;
   right: 0;
   left: 0;
+`;
+
+export const IndexList = styled(Animated.View)`
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  z-index: 5;
 `;
 
 export const CardHeader = styled.View`
@@ -46,13 +60,12 @@ export const CardFooter = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 13px;
-  color: #999;
+  font-size: 14px;
+  color: #333;
 `;
 
 export const Description = styled.Text`
   font-size: 32px;
-  margin-top: 3px;
   color: #333;
 `;
 
